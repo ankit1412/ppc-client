@@ -1,0 +1,12 @@
+mutation updatePlant($id: ID!, $params: UpdatePlantInput!) {
+  updatePlant(id: $id, params: $params) {
+    plant {
+      id
+      code
+    }
+    errors {
+      path
+      message
+    }
+  }
+}

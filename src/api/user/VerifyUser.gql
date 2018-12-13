@@ -1,0 +1,21 @@
+mutation verifyUser($username: String!) {
+  verifyUser(username: $username) {
+    user {
+      id
+      firstName
+      lastName
+      role
+      status
+      meta {
+        plant {
+          id
+          code
+        }
+      }
+    }
+    errors {
+      path
+      message
+    }
+  }
+}

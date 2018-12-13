@@ -1,23 +1,66 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
+import { AUTH_TOKEN } from './plugins/vue-apollo';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home,
+      path: '/signin',
+      name: 'Signin',
+      component: () => import(/* webpackChunkName: "signin" */ './views/Signin.vue'),
+      meta: {
+        public: true,
+        redirect: true,
+      },
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      path: '/signup',
+      name: 'Signup',
+      component: () => import(/* webpackChunkName: "signup" */ './views/Signup.vue'),
+      meta: {
+        public: true,
+        redirect: true,
+      },
+    },
+    {
+      path: '/complete-signup',
+      name: 'CompleteSignup',
+      component: () => import(/* webpackChunkName: "completeSignup" */ './views/CompleteSignup.vue'),
+      meta: {
+        public: true,
+        redirect: true,
+      },
+    },
+    {
+      path: '/',
+      name: 'Dashboard',
+      component: () => import(/* webpackChunkName: "Dashboard" */ './views/Dashboard.vue'),
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: () => import(/* webpackChunkName: "Settings" */ './views/Settings.vue'),
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  const auth = localStorage.getItem(AUTH_TOKEN);
+  const publicRoute = to.matched.some(record => record.meta.public);
+  const redirect = to.matched.some(record => record.meta.redirect);
+  if (!publicRoute) {
+    if (auth === null) {
+      next({ name: 'Signin' });
+    }
+  } else if (redirect) {
+    if (auth !== null) {
+      next({ name: 'Dashboard' });
+    }
+  }
+  next();
+});
+
+export default router;

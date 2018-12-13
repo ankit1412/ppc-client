@@ -1,0 +1,8 @@
+mutation completeSignup($email: String!, $username: String!, $password: String!) {
+  completeSignup(email: $email, username: $username, password: $password) {
+    errors {
+      path
+      message
+    }
+  }
+}

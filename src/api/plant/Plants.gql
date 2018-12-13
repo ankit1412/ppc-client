@@ -1,0 +1,7 @@
+query plants($userId: ID) {
+  plants(userId: $userId) {
+    id
+    name
+    code
+  }
+}

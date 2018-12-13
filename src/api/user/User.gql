@@ -1,0 +1,15 @@
+query getUser {
+  user {
+    firstName
+    lastName
+    email
+    role
+    avatarColor
+    meta {
+      plant {
+        id
+        code
+      }
+    }
+  }
+}
