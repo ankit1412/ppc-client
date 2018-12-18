@@ -1,0 +1,8 @@
+query currencies {
+  currencies {
+    id
+    value
+    symbol
+    default
+  }
+}

@@ -11,14 +11,15 @@
       clearable
       single-line
       hide-details
+      @keyup.enter.native="searchQuery"
     >
-    <v-tooltip
-      slot="prepend"
-      bottom
-    >
-      <span>Search</span>
-      <v-icon slot="activator" @click="setFocus()">mdi-magnify</v-icon>
-    </v-tooltip>
+      <v-tooltip
+        slot="append-outer"
+        bottom
+      >
+        <span>Search</span>
+        <v-icon slot="activator" @click="searchQuery">mdi-magnify</v-icon>
+      </v-tooltip>
     </v-text-field>
   </v-layout>
 </template>
@@ -33,6 +34,11 @@ export default {
   methods: {
     setFocus() {
       this.$refs.searchField.focus();
+    },
+    searchQuery() {
+      if (this.search && this.search.trim() !== '') {
+        this.$router.push({ name: 'Search', query: { q: this.search.trim() } });
+      }
     },
   },
 };

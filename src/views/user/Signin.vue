@@ -75,7 +75,7 @@
                     </v-btn>
                   </span>
                   <span v-else>
-                    Not {{user.firstName}} {{user.lastName}}?
+                    Not {{user.firstName}}?
                     <v-btn :disabled="loading" color="primary" flat @click="onBack">
                       Back
                     </v-btn>
@@ -105,7 +105,7 @@ import { AUTH_TOKEN, PLANT_ID, onSignin } from '@/plugins/vue-apollo';
 
 export default {
   title() {
-    return 'PPC Sign in';
+    return 'Sign in';
   },
   data() {
     return {
@@ -193,7 +193,6 @@ export default {
             },
           })
             .then(async ({ data: { signin } }) => {
-              this.loading = false;
               const { token, errors } = signin;
               if (errors) {
                 this.username = username;
@@ -206,6 +205,7 @@ export default {
                 if (plantId) localStorage.setItem(PLANT_ID, plantId);
                 this.$router.push({ name: 'Dashboard' });
               }
+              this.loading = false;
             })
             .catch(() => {
               this.loading = false;
@@ -231,8 +231,9 @@ export default {
       watchLoading(isLoading) {
         if (isLoading) {
           this.loadingPlants = true;
+        } else {
+          this.loadingPlants = false;
         }
-        this.loadingPlants = false;
       },
     },
   },

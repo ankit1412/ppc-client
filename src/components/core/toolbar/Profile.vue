@@ -17,7 +17,8 @@
         flat
         fab
       >
-        <v-tooltip open-delay="800" bottom>
+        <Spinner v-if="loading" color="secondary" />
+        <v-tooltip v-else open-delay="800" bottom>
           <span>
             <div class="font-weight-bold">
               {{ fullName }}
@@ -46,7 +47,7 @@
                 {{ email }}
               </v-flex>
               <v-flex xs12 class="text-xs-left">
-                <a href="#">Account</a>
+                <router-link :to="{ name: 'GeneralSettings' }">Account</router-link>
               </v-flex>
             </v-card-title>
           </v-flex>
@@ -56,7 +57,7 @@
         </v-divider>
 
         <v-card-actions class="pa-1">
-          <v-btn flat @click="$router.push({ name: 'Settings' })" v-if="showSettings">
+          <v-btn flat @click="$router.push({ name: 'Users' })" v-if="showSettings">
             Settings
           </v-btn>
           <v-spacer></v-spacer>
@@ -80,6 +81,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       menu: false,
       user: null,
     };
@@ -89,6 +91,13 @@ export default {
       query: USER,
       skip() {
         return localStorage.getItem(AUTH_TOKEN) === null;
+      },
+      watchLoading(isLoading) {
+        if (isLoading) {
+          this.loading = true;
+        } else {
+          this.loading = false;
+        }
       },
     },
   },

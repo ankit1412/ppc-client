@@ -1,0 +1,6 @@
+query measuringUnits {
+  measuringUnits {
+    id
+    value
+  }
+}

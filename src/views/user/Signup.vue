@@ -22,7 +22,6 @@
                   <v-layout row wrap>
                     <v-flex xs6>
                       <v-text-field
-                        autofocus
                         v-model="user.firstName"
                         name="firstName"
                         label="First name*"
@@ -37,7 +36,6 @@
                     </v-flex>
                     <v-flex xs6 class="pl-2">
                       <v-text-field
-                        autofocus
                         v-model="user.lastName"
                         name="lastName"
                         label="Last name*"
@@ -112,7 +110,7 @@ import SIGNUP from '@/api/user/Signup.gql';
 
 export default {
   title() {
-    return 'PPC Sign up';
+    return 'Sign up';
   },
   data() {
     return {

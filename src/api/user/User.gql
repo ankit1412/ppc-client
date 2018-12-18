@@ -9,6 +9,11 @@ query getUser {
       plant {
         id
         code
+        name
+      }
+      company {
+        id
+        name
       }
     }
   }

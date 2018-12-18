@@ -32,15 +32,15 @@
             <v-layout row wrap>
               <v-flex v-for="(cols, colIndex) in menuItems" :key="colIndex" xs4>
                 <v-list class="pa-0">
-                  <template v-for="item in cols">
+                  <template v-for="(item, rowIndex) in cols">
                     <v-subheader v-if="item.header" :key="item.header">
                       {{ item.header }}
                     </v-subheader>
                     <v-list-tile
                       v-else
                       ripple
-                      :key="item.name"
-                      :to="{ name: `${item.name}` }"
+                      :key="rowIndex"
+                      :to="{ name: item.name, query: item.query }"
                     >
                       <v-list-tile-action>
                         <v-icon light>

@@ -5,11 +5,11 @@ export default [
     group: 'inventory',
     icon: 'mdi-file-cabinet',
     children: [
-      { name: 'Consumable Inventory', title: 'Consumables', icon: 'mdi-google-circles-communities' },
-      { name: 'Finished Material Inventory', title: 'Finished Materials', icon: 'mdi-circle-slice-8' },
-      { name: 'Raw Material Inventory', title: 'Raw Materials', icon: 'mdi-checkbox-blank-circle-outline' },
-      { name: 'Rejected Material Inventory', title: 'Rejected Materials', icon: 'mdi-close-circle-outline' },
-      { name: 'Semi Finished Material Inventory', title: 'Semi-finished Materials', icon: 'mdi-circle-slice-4' },
+      { name: 'ConsumableInventory', title: 'Consumables', icon: 'mdi-google-circles-communities' },
+      { name: 'FinishedMaterialInventory', title: 'Finished Materials', icon: 'mdi-circle-slice-8' },
+      { name: 'RawMaterialInventory', title: 'Raw Materials', icon: 'mdi-checkbox-blank-circle-outline' },
+      { name: 'RejectedMaterialInventory', title: 'Rejected Materials', icon: 'mdi-close-circle-outline' },
+      { name: 'SemiFinishedMaterialInventory', title: 'Semi-finished Materials', icon: 'mdi-circle-slice-4' },
     ],
   },
   {

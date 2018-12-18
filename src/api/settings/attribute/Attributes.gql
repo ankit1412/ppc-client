@@ -1,0 +1,6 @@
+query materialAttributes {
+  materialAttributes {
+    id
+    value
+  }
+}

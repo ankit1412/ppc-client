@@ -1,6 +1,7 @@
 <template>
   <div v-cloak>
     <v-app id="app">
+      <vue-progress-bar></vue-progress-bar>
       <template v-if="!$route.meta.public">
         <AppDrawer />
         <MasterDataDrawer />
@@ -56,12 +57,20 @@ export default {
       transitionName: 'slight-left',
     };
   },
+  mountd() {
+    this.$Progress.finish();
+  },
   created() {
+    this.$Progress.start();
     this.$router.beforeEach((to, from, next) => {
+      this.$Progress.start();
       const toDepth = to.path.split('/').length;
       const fromDepth = from.path.split('/').length;
       this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
       next();
+    });
+    this.$router.afterEach(() => {
+      this.$Progress.finish();
     });
   },
   methods: {

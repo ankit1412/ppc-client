@@ -3,5 +3,8 @@ query getUsers($filter: UsersInput) {
     id
     firstName
     lastName
+    email
+    status
+    role
   }
 }

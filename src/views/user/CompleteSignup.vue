@@ -61,7 +61,6 @@
                   <v-btn
                     v-if="status !== 'ACTIVE'"
                     :loading="loading"
-                    :disabled="!!error"
                     type="submit"
                     color="primary"
                   >

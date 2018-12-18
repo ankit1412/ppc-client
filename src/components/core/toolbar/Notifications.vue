@@ -73,7 +73,14 @@
           </v-layout>
         </v-card-text>
         <v-card-actions class="pa-1">
-          <v-btn block flat class="pa-1" color="primary">See all</v-btn>
+          <v-btn
+            block flat
+            class="pa-1"
+            color="primary"
+            @click="$router.push({ name: 'Notifications' })"
+          >
+            See all
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-menu>

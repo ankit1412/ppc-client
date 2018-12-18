@@ -1,0 +1,27 @@
+query createJobCardView($againstOrder: Boolean) {
+  jobCardNo
+  users {
+    id
+    firstName
+    lastName
+  }
+  orders @include(if: $againstOrder) {
+    id
+    taskNo
+    orderItems {
+      id
+      name
+      issueUnit
+      expectedQuantity
+    }
+  }
+  materials @skip(if: $againstOrder) {
+    id
+    name
+    materialVariants {
+      id
+      name
+      issueUnit
+    }
+  }
+}

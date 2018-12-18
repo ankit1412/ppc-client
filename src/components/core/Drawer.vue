@@ -3,9 +3,12 @@
     id="appDrawer"
     class="grey lighten-5"
     v-model="inputValue"
+    :mini-variant="showMiniVariant"
     clipped
     app
     floating
+    @mouseover.native="mouseOver()"
+    @mouseleave.native="mouseLeave()"
     width="280"
   >
     <v-toolbar flat dark color="primary" v-if="$vuetify.breakpoint.smAndDown">
@@ -13,7 +16,7 @@
       </v-toolbar-side-icon>
       <span>
         <v-tooltip open-delay="800" bottom>
-          <span>Home (Dashboard)</span>
+          <span>Home</span>
           <a slot="activator" @click="$router.push({ name: 'Dashboard' })">
             <img src="@/assets/logo.png" alt="Pushup Tools logo" width="100%">
           </a>
@@ -45,8 +48,6 @@
               exact
               ripple
             >
-              <v-list-tile-avatar>
-              </v-list-tile-avatar>
               <v-list-tile-action>
                 <v-icon>
                   {{ child.icon }}
@@ -103,6 +104,8 @@ export default {
       scrollSettings: {
         maxScrollbarLength: 160,
       },
+      miniVariant: true,
+      hover: false,
     };
   },
   computed: {
@@ -115,9 +118,28 @@ export default {
         this.setAppDrawer(val);
       },
     },
+    isMobile() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
+    showMiniVariant() {
+      if (this.isMobile) {
+        return false;
+      }
+      return this.miniVariant && !this.hover;
+    },
   },
   methods: {
     ...mapMutations(['setAppDrawer']),
+    mouseOver() {
+      if (this.miniVariant === true) {
+        this.hover = true;
+      }
+    },
+    mouseLeave() {
+      if (this.miniVariant === true && this.hover === true) {
+        this.hover = false;
+      }
+    },
   },
 };
 </script>

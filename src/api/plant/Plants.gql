@@ -3,5 +3,6 @@ query plants($userId: ID) {
     id
     name
     code
+    city
   }
 }
